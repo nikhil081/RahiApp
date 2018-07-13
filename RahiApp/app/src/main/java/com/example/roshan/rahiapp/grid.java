@@ -1,0 +1,200 @@
+package com.example.nikhil.app;
+
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    GridView gridView,gridview2;
+    static final String[ ] GRID_DATA = new String[] {
+            "Train Between Stations" ,
+            "Train Schedule",
+            "PNR Status" ,
+            "Seat Availability",
+            "Live Train Status" ,
+            "Live Station Info",
+            "Seat Map",
+            "Fare Enquiry",
+            "Book/Cancel Tickets" ,
+            "Station Alarm" ,
+            "Cancelled Trains" ,
+            "Rescheduled Trains" ,
+            "Diverted Trains"
+    };
+    static final String[ ] GRID_DATA2 = new String[] {
+            "Train Between Stations" ,
+            "Train Schedule",
+            "PNR Status" ,
+
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.gridview);
+        gridView = findViewById(R.id.grid);
+        gridview2 = findViewById(R.id.gride);
+        gridView.setAdapter(new ImageAdapterGridView(this,GRID_DATA));
+        gridview2.setAdapter(new ImageAdapterGridView2(this,GRID_DATA2));
+
+
+    }
+    public class ImageAdapterGridView extends BaseAdapter {
+        private Context context;
+        private final String[] gridValues;
+        public ImageAdapterGridView(Context context, String[ ] gridValues) {
+
+            this.context        = context;
+            this.gridValues     = gridValues;
+        }
+
+        public int getCount() {
+            return gridValues.length;
+        }
+
+        public Object getItem(int position) {
+            return null;
+        }
+
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View gridView;
+            if (convertView == null) {
+                gridView = new View(context);
+                gridView = inflater.inflate( R.layout.item , null);
+                TextView textView = (TextView) gridView
+                        .findViewById(R.id.grid_item_label);
+
+                textView.setText(gridValues[position]);
+                ImageView imageView = (ImageView) gridView
+                        .findViewById(R.id.grid_item_image);
+
+                String arrLabel = gridValues[ position ];
+               if (arrLabel.equals("Train Between Stations")) {
+
+                imageView.setImageResource(R.drawable.seach);
+
+            } else if (arrLabel.equals("Train Schedule")) {
+
+                imageView.setImageResource(R.drawable.calender);
+
+            } else if (arrLabel.equals("PNR Status")) {
+
+                imageView.setImageResource(R.drawable.trainstatus);
+
+            } else if (arrLabel.equals("Seat Availability")){
+
+                imageView.setImageResource(R.drawable.seat);
+            }else if (arrLabel.equals("Live Train Status")){
+
+                   imageView.setImageResource(R.drawable.trainstatus);
+               }else if (arrLabel.equals("Live Station Info")) {
+
+                   imageView.setImageResource(R.drawable.pnr);
+               }else if (arrLabel.equals("Seat Map")) {
+
+                   imageView.setImageResource(R.drawable.seat);
+               }else if (arrLabel.equals("Fare Enquiry")){
+
+                   imageView.setImageResource(R.drawable.fare);
+               }else if (arrLabel.equals("Book/Cancel Tickets")) {
+
+                   imageView.setImageResource(R.drawable.ticket);
+               }else if (arrLabel.equals("Station Alarm")) {
+
+                   imageView.setImageResource(R.drawable.alar);
+               }else if (arrLabel.equals("Cancelled Trains")) {
+
+                   imageView.setImageResource(R.drawable.cac);
+               }else if (arrLabel.equals("Rescheduled Trains")) {
+
+                   imageView.setImageResource(R.drawable.restrain);
+               }else if (arrLabel.equals("Diverted Trains")) {
+
+                   imageView.setImageResource(R.drawable.diverted);
+               }
+
+        } else {
+
+            gridView = (View) convertView;
+        }
+
+            return gridView;
+        }
+    }
+    public class ImageAdapterGridView2 extends BaseAdapter {
+        private Context context;
+        private final String[] gridValues;
+        public ImageAdapterGridView2(Context context, String[ ] gridValues) {
+
+            this.context        = context;
+            this.gridValues     = gridValues;
+        }
+
+        public int getCount() {
+            return gridValues.length;
+        }
+
+        public Object getItem(int position) {
+            return null;
+        }
+
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View gridView;
+            if (convertView == null) {
+                gridView = new View(context);
+                gridView = inflater.inflate(R.layout.item, null);
+                TextView textView = (TextView) gridView
+                        .findViewById(R.id.grid_item_label);
+
+                textView.setText(gridValues[position]);
+                ImageView imageView = (ImageView) gridView
+                        .findViewById(R.id.grid_item_image);
+
+                String arrLabel = gridValues[position];
+                if (arrLabel.equals("search")) {
+
+                    imageView.setImageResource(R.drawable.seach);
+
+                } else if (arrLabel.equals("schedule")) {
+
+                    imageView.setImageResource(R.drawable.calender);
+
+                } else if (arrLabel.equals("PNR Status")) {
+
+                    imageView.setImageResource(R.drawable.trainstatus);
+
+                }
+            }
+                else {
+
+                gridView = (View) convertView;
+            }
+
+            return gridView;
+        }
+
+}
+}
+
+

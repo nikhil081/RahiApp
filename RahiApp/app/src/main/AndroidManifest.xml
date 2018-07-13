@@ -47,6 +47,8 @@
         <activity android:name=".GetFareActivity" />
         <activity android:name=".GetTrainsOnActivity" />
         <activity android:name=".GetStatusActivity"></activity>
+        <activity android:name=".grid" />
+        <activity android:name=".splash_rahi" />
     </application>
 
 </manifest>
